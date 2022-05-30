@@ -43,7 +43,9 @@ function rollPool() {
   for (var i = 0; i<dicepool.length; i++) {
     rollstring = rollstring.concat(dicemap[dicepool[i]]);
   }
-  var results = httpGet('http://127.0.0.1:500/swcs/rest/roll?dicepool=' + rollstring);
+  // var host = location.host
+  console.log(location.host)
+  var results = httpGet('/swcs/rest/roll?dicepool=' + rollstring);
   var restext = ''
   for (let key in results) {
     if (key ==='face'){continue;}
