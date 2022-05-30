@@ -1,0 +1,4 @@
+{% load static %}
+{% for die in dice_pool %}
+    <span class="dice-span"><img class="dice" id="{{ die }}" src="{% static 'swcs/' %}{{ die }}.svg"></span>
+{% endfor %}

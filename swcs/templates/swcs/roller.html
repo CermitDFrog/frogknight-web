@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<link rel="stylesheet" href="{% static 'swcs/style.css' %}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script type="text/javascript" charset="utf-8">
+  var boost = "{% static 'swcs/boost.svg' %}";
+  var ability = "{% static 'swcs/ability.svg' %}";
+  var proficiency = "{% static 'swcs/proficiency.svg' %}";
+  var setback = "{% static 'swcs/setback.svg' %}";
+  var difficulty = "{% static 'swcs/difficulty.svg' %}";
+  var challenge = "{% static 'swcs/challenge.svg' %}";
+  var force = "{% static 'swcs/force.svg' %}";
+  var api_root = '{{ settings.WEB_ROOT }}/swcs/rest/'
+</script>
+<script src="{% static 'swcs/script.js' %}"></script>
+
+<body onload="renderDicePool()">
+<div id="dice-roller">
+  <span id="dice-roller-header" class="row">
+    </span>
+    <span id="dice-roller-business" class="row">
+      <span id="dice-roller-business-buttons">
+        <button onclick="rollPool()">Roll!</button><br>
+        <button onclick="clearDicePool()">Clear!</button>
+      </span>
+      <span id="dice-roller-business-pool"></span>
+      </span>
+    <span id="dice-roller-results" class="row">
+    </span>
+</div>
+</body>
+
+</html>

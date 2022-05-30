@@ -1,0 +1,9 @@
+{
+      "boost": "<span class=\"dice-span\"><img class=\"dice\" src=\"C:\\Users\\Sintr\\source\\python\\CermitsWebsite\\swcs\\static\\boost.svg\"></span>\"",
+      "ability": "<span class=\"dice-span\"><img class=\"dice\" src=\"C:\\Users\\Sintr\\source\\python\\CermitsWebsite\\swcs\\static\\ability.svg\"></span>\"",
+      "proficiency": "<span class=\"dice-span\"><img class=\"dice\" src=\"C:\\Users\\Sintr\\source\\python\\CermitsWebsite\\swcs\\static\\proficiency.svg\"></span>\"",
+      "setback": "<span class=\"dice-span\"><img class=\"dice\" src=\"C:\\Users\\Sintr\\source\\python\\CermitsWebsite\\swcs\\static\\setback.svg\"></span>\"",
+      "difficulty": "<span class=\"dice-span\"><img class=\"dice\" src=\"C:\\Users\\Sintr\\source\\python\\CermitsWebsite\\swcs\\static\\difficulty.svg\"></span>\"",
+      "challenge": "<span class=\"dice-span\"><img class=\"dice\" src=\"C:\\Users\\Sintr\\source\\python\\CermitsWebsite\\swcs\\static\\challenge.svg\"></span>\"",
+      "force": "<span class=\"dice-span\"><img class=\"dice\" src=\"C:\\Users\\Sintr\\source\\python\\CermitsWebsite\\swcs\\static\\force.svg\"></span>\""
+    }
