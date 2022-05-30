@@ -44,13 +44,13 @@ function rollPool() {
     rollstring = rollstring.concat(dicemap[dicepool[i]]);
   }
   // var host = location.host
-  console.log(location.host)
+  // console.log(location.host)
   var results = httpGet('/swcs/rest/roll?dicepool=' + rollstring);
   var restext = ''
   for (let key in results) {
     if (key ==='face'){continue;}
     let value = results[key];
-    console.log(key, value);
+    // console.log(key, value);
     restext = restext + key + ': ' + value + ' ';
   }
   var parent = document.getElementById("dice-roller-results");

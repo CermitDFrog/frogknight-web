@@ -1,7 +1,10 @@
-import random
+from discord import Webhook, AsyncWebhookAdapter # Importing discord.Webhook and discord.AsyncWebhookAdapter
+from django.conf import settings
 from collections import Counter
-import json
-
+import aiohttp
+import asyncio 
+import random
+import platform
 
 DICE = {
     "b": (
@@ -103,4 +106,17 @@ def roller(pool):
     #         continue
     #     roll[REMAP[key]] = abs(roll[key])
     roll = {key: value for key, value in roll.items() if value != 0}
+    if platform.system() == 'Windows':
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    asyncio.run(sendToDiscord(roll))
+    # threading.Thread(target=sendToDiscord, args=(roll)).start()
     return roll
+
+async def sendToDiscord(roll):
+  async with aiohttp.ClientSession() as session:  
+    webhook = Webhook.from_url(settings.DISCORD_WEB_HOOK_URL, adapter=AsyncWebhookAdapter(session)) # Initializing webhook with AsyncWebhookAdapter
+    await webhook.send(content=roll) 
+
+# def sendToDiscord(roll):
+#     hook = Webhook.from_url('', adapter=RequestsWebhookAdapter()) # Initializing webhook
+#     hook.send(content=json.dumps(roll))
