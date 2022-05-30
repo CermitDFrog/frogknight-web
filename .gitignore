@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/static/*
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+/dev
+dev/Scripts/activate.bat
