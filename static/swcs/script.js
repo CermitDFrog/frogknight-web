@@ -43,7 +43,7 @@ function rollPool() {
   for (var i = 0; i<dicepool.length; i++) {
     rollstring = rollstring.concat(dicemap[dicepool[i]]);
   }
-  var results = httpGet('http://127.0.0.1:8000/swcs/rest/roll?dicepool=' + rollstring);
+  var results = httpGet('http://127.0.0.1:500/swcs/rest/roll?dicepool=' + rollstring);
   var restext = ''
   for (let key in results) {
     if (key ==='face'){continue;}
@@ -51,8 +51,6 @@ function rollPool() {
     console.log(key, value);
     restext = restext + key + ': ' + value + ' ';
   }
-  // for (let [key, value] of Object.entries(result)) {
-  // }
   var parent = document.getElementById("dice-roller-results");
   while (parent.firstChild) { parent.removeChild(parent.firstChild);}
   var resultselement = document.createTextNode(restext)

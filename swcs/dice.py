@@ -102,5 +102,5 @@ def roller(pool):
     #     if roll[key]==0:
     #         continue
     #     roll[REMAP[key]] = abs(roll[key])
-    # roll = {key: value for key, value in roll.items() if value != 0}
-    return {key: value for key, value in roll.items() if value != 0}
+    roll = {key: value for key, value in roll.items() if value != 0}
+    return roll
