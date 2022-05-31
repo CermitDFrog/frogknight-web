@@ -10,67 +10,77 @@ var dicemap = {
   [force]: "f"
 }
 
-function renderDicePool(parent = "dice-roller-header", clicky = "add", dice = dicebag) {
+function renderDicePool(parent = "dice-roller-header") {
+  // Clear current pool
   var parent = document.getElementById(parent);
-  while (parent.firstChild) { parent.removeChild(parent.firstChild);}
-  for (var i = 0; i < dice.length; i++) {
+  while (parent.firstChild) { parent.removeChild(parent.firstChild); }
+
+  for (var i = 0; i < dicepool.length; i++) {
+    // Create span for containing die element.
     var diespan = document.createElement("span");
-    var dieimg = document.createElement('img');
-    var tagprefix = ''
-    if (clicky === 'add') 
-    {  dieimg.setAttribute('onClick', 'addToPool('+i+')' ) ; } 
-    else 
-    {  dieimg.setAttribute('onClick', 'removeFromPool('+i+')' ); tagprefix='small-' }
-    dieimg.src = dice[i]; dieimg.className = tagprefix+'dice';    
-    diespan.className = tagprefix+'dice-span';
-    diespan.appendChild(dieimg);
     parent.appendChild(diespan);
+    diespan.className = 'roller-span';
+    var dieimg = document.createElement('img');
+    diespan.appendChild(dieimg);
+    dieimg.src = dicepool[i];
+    dieimg.setAttribute('onClick', 'removeFromPool(' + i + ')');
+    dieimg.className = 'small-dice';
   }
 };
-// removeButton.setAttribute('onClick','removeName('+i+')');
+
 function addToPool(die) {
   dicepool.push(dicebag[die]);
-  renderDicePool('dice-roller-business-pool','remove',dicepool)
+  renderDicePool('dice-pool', 'remove', dicepool)
 };
 
 function removeFromPool(die) {
-  dicepool.splice(die,1);
-  renderDicePool('dice-roller-business-pool','remove',dicepool)
+  dicepool.splice(die, 1);
+  renderDicePool('dice-pool', 'remove', dicepool)
 };
 
 function rollPool() {
+  renderDicePool('dice-pool', 'remove', dicepool);
   var rollstring = '';
-  for (var i = 0; i<dicepool.length; i++) {
+  for (var i = 0; i < dicepool.length; i++) {
     rollstring = rollstring.concat(dicemap[dicepool[i]]);
   }
-  // var host = location.host
-  // console.log(location.host)
   var results = httpGet('/swcs/rest/roll?dicepool=' + rollstring);
   var restext = ''
+  var pool = document.getElementById("dice-pool");
   for (let key in results) {
-    if (key ==='face'){continue;}
+    if (key === 'face') {
+      var children = pool.children;
+      for (var i = 0; i < children.length; i++) {
+        var dicetext = document.createElement('p');
+        dicetext.className = 'response-text';
+        var dicetextval = document.createTextNode(results[key][i])
+        dicetext.appendChild(dicetextval);
+        children[i].appendChild(dicetext);
+      }
+      continue;
+    }
     let value = results[key];
-    // console.log(key, value);
     restext = restext + key + ': ' + value + ' ';
   }
   var parent = document.getElementById("dice-roller-results");
-  while (parent.firstChild) { parent.removeChild(parent.firstChild);}
+  while (parent.firstChild) { parent.removeChild(parent.firstChild); }
   var resultselement = document.createTextNode(restext)
+  // resultselement.className = 'respons-text';
   parent.appendChild(resultselement)
 };
 
-function httpGet(theUrl)
-{
-   var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
+function httpGet(theUrl) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", theUrl, false); // false for synchronous request
+  xmlHttp.send(null);
 
-    return JSON.parse(xmlHttp.responseText);
+  return JSON.parse(xmlHttp.responseText);
 };
 
 function clearDicePool() {
   dicepool = [];
-  renderDicePool('dice-roller-business-pool','remove',dicepool);
+  var parent = document.getElementById('dice-pool');
+  while (parent.firstChild) { parent.removeChild(parent.firstChild); }
   var parent = document.getElementById("dice-roller-results");
-  while (parent.firstChild) { parent.removeChild(parent.firstChild);}
+  while (parent.firstChild) { parent.removeChild(parent.firstChild); }
 };
