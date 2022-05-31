@@ -8,68 +8,68 @@ import platform
 
 DICE = {
     "b": (
-        {"face": ['b']},
-        {"face": ['b']},
-        {"advantage": 2, "face": ['a\na']},
+        {"face": ['']},
+        {"face": ['']},
+        {"advantage": 2, "face": ['aa']},
         {"advantage": 1, "face": ['a']},
-        {"advantage": 1, "success": 1, "face": ['a\ns']},
+        {"advantage": 1, "success": 1, "face": ['as']},
         {"success": 1, "face": ['s']}
     ),
     "s": (
         {"face": ['']},
         {"face": ['']},
-        {"advantage": -2, "face": ['t\nt']},
+        {"advantage": -2, "face": ['tt']},
         {"advantage": -1, "face": ['t']},
-        {"advantage": -1, "success": -1, "face": ['t\nf']},
+        {"advantage": -1, "success": -1, "face": ['tf']},
         {"success": -1, "face": ['f']}
     ),
     "a": (
         {"face": ['']},
         {"success": 1, "face": ['s']},
         {"success": 1, "face": ['s']},
-        {"success": 2, "face": ['s\ns']},
+        {"success": 2, "face": ['ss']},
         {"advantage": 1, "face": ['a']},
         {"advantage": 1, "face": ['a']},
-        {"advantage": 1, "success": 1, "face": ['a\ns']},
-        {"advantage": 2, "face": ['a\na']}
+        {"advantage": 1, "success": 1, "face": ['as']},
+        {"advantage": 2, "face": ['aa']}
     ),
     "d": (
         {"face": ['']},
         {"success": -1, "face": ['f']},
-        {"success": -2, "face": ['f\nf']},
+        {"success": -2, "face": ['ff']},
         {"advantage": -1, "face": ['t']},
         {"advantage": -1, "face": ['t']},
         {"advantage": -1, "face": ['t']},
-        {"advantage": -2, "face": ['t\nt']},
-        {"advantage": -1, "success": -1, "face": ['t\nf']}
+        {"advantage": -2, "face": ['tt']},
+        {"advantage": -1, "success": -1, "face": ['tf']}
     ),
     "p": (
         {"face": ['']},
         {"success": 1, "face": ['s']},
         {"success": 1, "face": ['s']},
-        {"success": 2, "face": ['s\ns']},
-        {"success": 2, "face": ['s\ns']},
+        {"success": 2, "face": ['ss']},
+        {"success": 2, "face": ['ss']},
         {"advantage": 1, "face": ['a']},
         {"advantage": 1, "success": 1, "face": ['a']},
-        {"advantage": 1, "success": 1, "face": ['a\ns']},
-        {"advantage": 1, "success": 1, "face": ['a\ns']},
-        {"advantage": 2, "face": ['a\na']},
-        {"advantage": 2, "face": ['a\na']},
-        {"success": 1, "triumph": 1, "face": ['r']}
+        {"advantage": 1, "success": 1, "face": ['as']},
+        {"advantage": 1, "success": 1, "face": ['as']},
+        {"advantage": 2, "face": ['aa']},
+        {"advantage": 2, "face": ['aa']},
+        {"success": 1, "triumph": 1, "face": ['x']}
     ),
     "c": (
         {"face": ['']},
         {"success": -1, "face": ['f']},
         {"success": -1, "face": ['f']},
-        {"success": -2, "face": ['f\nf']},
-        {"success": -2, "face": ['f\nf']},
+        {"success": -2, "face": ['ff']},
+        {"success": -2, "face": ['ff']},
         {"advantage": -1, "face": ['t']},
         {"advantage": -1, "face": ['t']},
-        {"advantage": -1, "success": -1, "face": ['t\nf']},
-        {"advantage": -1, "success": -1, "face": ['t\nf']},
-        {"advantage": -2, "face": ['t\nt']},
-        {"advantage": -2, "face": ['t\nt']},
-        {"success": -1, "despair": 1, "face": ['e']}
+        {"advantage": -1, "success": -1, "face": ['tf']},
+        {"advantage": -1, "success": -1, "face": ['tf']},
+        {"advantage": -2, "face": ['tt']},
+        {"advantage": -2, "face": ['tt']},
+        {"success": -1, "despair": 1, "face": ['y']}
     ),
     "f": (
         {"dark": 1, "face": ['z']},
@@ -78,12 +78,12 @@ DICE = {
         {"dark": 1, "face": ['z']},
         {"dark": 1, "face": ['z']},
         {"dark": 1, "face": ['z']},
-        {"dark": 2, "face": ['z\nz']},
+        {"dark": 2, "face": ['zz']},
         {"light": 1, "face": ['Z']},
         {"light": 1, "face": ['Z']},
-        {"light": 2, "face": ['Z\nZ']},
-        {"light": 2, "face": ['Z\nZ']},
-        {"light": 2, "face": ['Z\nZ']}
+        {"light": 2, "face": ['ZZ']},
+        {"light": 2, "face": ['ZZ']},
+        {"light": 2, "face": ['ZZ']}
     )
 }
 
