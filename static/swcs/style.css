@@ -4,6 +4,7 @@
     src: local("EotE Symbol"), url("EotE Symbol.otf") format("opentype");
   }
 
+/* Roller Styles start here */
 .dice {
     height: 60px;
     width: 60px;
@@ -20,7 +21,6 @@
     border: none;
     border-radius: 15%;
     color: white;
-    background-color: rgb(73,89,109);
     text-align: center;
     text-decoration: none;
     /* font-size: 16px; */
@@ -40,33 +40,27 @@
 }
 
 .response-text{
+    /* color:black; */
     white-space: pre-line;
     text-align: center;
     line-height: 35px;
     z-index: 12;    
     font-size: 100%;
     font-family: 'EotE Symbol';
+
 }
 
 .small-dice {
     z-index: -1;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    /* transform: scale(.87); */
     filter: drop-shadow(2px 2px 2px black);
 }
 
-/* .small-dice:hover {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transform: scale(1.2);
-} */
 .dice-grid{
     display: grid;
     grid-gap: 5px;
@@ -74,10 +68,12 @@
 }
 #dice-roller {
     width: 520px;
-    /* justify-content: center;
-    align-items: center; */
 }
 
 .setback-die {
     color:white;
+}
+
+.single-die {
+    font-size: 200%;
 }

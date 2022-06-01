@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>{% block title %}Frogknight-Web{% endblock %}</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'base.css' %}">
+<link rel="stylesheet" href="{% static 'theme.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <nav> 
+        <ul> 
+            <li><a href="{% url 'index' %}">Home</a></li> 
+            <li><a href="{% url 'sw-roller' %}">SW Dice Roller</a></li> 
+            <li>{% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+            <a href="{% url 'login' %}">Log In</a>
+            {% endif %}</li>
+        </ul> 
+    </nav> 
+    <!-- <nav class="nav-bar">
+    </nav> -->
+</head>
+<br>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>

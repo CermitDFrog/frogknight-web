@@ -54,6 +54,7 @@ function rollPool() {
         var dicetext = document.createElement('p');
         dicetext.classList.add('response-text');
         if (['s','d'].indexOf(dicemap[dicepool[i]]) +1) {dicetext.classList.add('setback-die');}
+        if (results[key][i].length === 1) {dicetext.classList.add('single-die');}
         var dicetextval = document.createTextNode(results[key][i]);
         dicetext.appendChild(dicetextval);
         children[i].appendChild(dicetext);

@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-
-<html lang="en">
-  
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  
-  <body>
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'swcs/style.css' %}">
+<link rel="stylesheet" href="{% static 'theme.css' %}">
 <script type="text/javascript" charset="utf-8">
   var boost = "{% static 'swcs/boost.svg' %}";
   var ability = "{% static 'swcs/ability.svg' %}";
@@ -20,26 +13,24 @@
   var force = "{% static 'swcs/force.svg' %}";
   var api_root = '{{ settings.WEB_ROOT }}/swcs/rest/'
 </script>
-<script src="{% static 'swcs/script.js' %}"></script>
-  <div id="dice-roller">
-    <span id="dice-roller-header" class="dice-grid">
-      <span id="dice-roller-buttons">
-        <button onclick="rollPool()" class="roller-button">Roll</button><br>
-        <button onclick="clearDicePool()" class="roller-button">Clear</button>
-      </span>
-      <span><img class="dice" src="{% static 'swcs/boost.svg' %}" onclick="addToPool(0)"></span>
-      <span><img class="dice" src="{% static 'swcs/ability.svg' %}" onclick="addToPool(1)"></span>
-      <span><img class="dice" src="{% static 'swcs/proficiency.svg' %}" onclick="addToPool(2)"></span>
-      <span><img class="dice" src="{% static 'swcs/setback.svg' %}" onclick="addToPool(3)"></span>
-      <span><img class="dice" src="{% static 'swcs/difficulty.svg' %}" onclick="addToPool(4)"></span>
-      <span><img class="dice" src="{% static 'swcs/challenge.svg' %}" onclick="addToPool(5)"></span>
-      <span><img class="dice" src="{% static 'swcs/force.svg' %}" onclick="addToPool(6)"></span>
+<script src="{% static 'swcs/roller.js' %}"></script>
+<div id="dice-roller">
+  <span id="dice-roller-header" class="dice-grid">
+    <span id="dice-roller-buttons">
+      <button onclick="rollPool()" class="roller-button">Roll</button><br>
+      <button onclick="clearDicePool()" class="roller-button">Clear</button>
     </span>
-    <span id="dice-pool" class="dice-grid">
-    </span>
-    <span id="dice-roller-results">
-    </span>
-  </div>
-</body>
-
-</html>
+    <span><img class="dice" src="{% static 'swcs/boost.svg' %}" onclick="addToPool(0)"></span>
+    <span><img class="dice" src="{% static 'swcs/ability.svg' %}" onclick="addToPool(1)"></span>
+    <span><img class="dice" src="{% static 'swcs/proficiency.svg' %}" onclick="addToPool(2)"></span>
+    <span><img class="dice" src="{% static 'swcs/setback.svg' %}" onclick="addToPool(3)"></span>
+    <span><img class="dice" src="{% static 'swcs/difficulty.svg' %}" onclick="addToPool(4)"></span>
+    <span><img class="dice" src="{% static 'swcs/challenge.svg' %}" onclick="addToPool(5)"></span>
+    <span><img class="dice" src="{% static 'swcs/force.svg' %}" onclick="addToPool(6)"></span>
+  </span>
+  <span id="dice-pool" class="dice-grid">
+  </span>
+  <span id="dice-roller-results">
+  </span>
+</div>
+{% endblock %}

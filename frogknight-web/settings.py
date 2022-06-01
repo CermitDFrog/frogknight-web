@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from os import environ
+from os import environ, path
 from pickle import TRUE
 from platform import system
 
@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 if system == 'Windows':
     DEBUG = True
-
+DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = environ['SECRET_KEY']
+ADMIN_URI = environ['ADMIN_URI']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'frogknight-web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,3 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Discord specific stuff.
 DISCORD_WEB_HOOK_URL = environ['DISCORD_WEB_HOOK_URL']
+
+# REDIRECT LOGIN/LOGOUT BACK TO ROOT.
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
