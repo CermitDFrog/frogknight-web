@@ -22,9 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-if system == 'Windows':
+
+if system() == 'Windows':
     DEBUG = True
-DEBUG = True
+# DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = environ['SECRET_KEY']
 ADMIN_URI = environ['ADMIN_URI']
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'swcs',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'frogknight-web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

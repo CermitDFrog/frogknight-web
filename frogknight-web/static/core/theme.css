@@ -17,6 +17,13 @@ a:link {
     text-decoration: none;
   }
 
+body {
+  background-color: rgb(155,160,168);
+}
+
+.account-form-theme {
+  background-color: rgb(214,223,231);
+}
 /* div{
     background-color: rgb(155,160,168);
 } */

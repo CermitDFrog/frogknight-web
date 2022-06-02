@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>{% block title %}Frogknight-Web{% endblock %}</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/base.css' %}">
+<link rel="stylesheet" href="{% static 'core/theme.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <nav> 
+        <ul> 
+            <li><a href="{% url 'core:index' %}">Home</a></li> 
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'swcs:sw-roller' %}">SW Dice Roller</a></li> 
+            <li><a href="{% url 'core:logout' %}"></li>Log Out</a></li>
+            {% else %}
+            <li><a href="{% url 'core:login' %}">Log In</a></li>
+            <li><a href="{% url 'core:register' %}">Create Account</a></li>
+            {% endif %}
+        </ul> 
+    </nav> 
+    <!-- <nav class="nav-bar">
+    </nav> -->
+</head>
+<br>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>
