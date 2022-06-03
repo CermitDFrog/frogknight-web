@@ -30,7 +30,6 @@ if system() == 'Windows':
     DEBUG = True
 # DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
-django_heroku.settings(locals())
 SECRET_KEY = environ['SECRET_KEY']
 ADMIN_URI = environ['ADMIN_URI']
 
@@ -91,12 +90,6 @@ WSGI_APPLICATION = 'frogknight-web.wsgi.application'
 DEFAULT_POSTGRES_URL = environ['DEFAULT_POSTGRES_URL']
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(default=DEFAULT_POSTGRES_URL, conn_max_age=100)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Password validation
@@ -149,3 +142,6 @@ DISCORD_WEB_HOOK_URL = environ['DISCORD_WEB_HOOK_URL']
 # REDIRECT LOGIN/LOGOUT BACK TO ROOT.
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+# Heroku specific settings.
+django_heroku.settings(locals())
