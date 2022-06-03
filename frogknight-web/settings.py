@@ -18,7 +18,6 @@ import dj_database_url
 import django_heroku
 
 
-django_heroku.settings(locals())
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +30,7 @@ if system() == 'Windows':
     DEBUG = True
 # DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
+django_heroku.settings(locals())
 SECRET_KEY = environ['SECRET_KEY']
 ADMIN_URI = environ['ADMIN_URI']
 
