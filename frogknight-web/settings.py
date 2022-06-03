@@ -14,6 +14,7 @@ from pathlib import Path
 from os import environ, path
 from pickle import TRUE
 from platform import system
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,7 @@ ALLOWED_HOSTS = ['frogknight-web.herokuapp.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,12 +85,15 @@ WSGI_APPLICATION = 'frogknight-web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DEFAULT_POSTGRES_URL = environ['DEFAULT_POSTGRES_URL']
+DATABASES = {}
+DATABASES['default'] = dj_database_url.parse(DEFAULT_POSTGRES_URL, conn_max_age=100)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -127,7 +132,7 @@ USE_TZ = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ['frogknight-web/static/']
+STATICFILES_DIRS = ('frogknight-web/static/',)
 STATIC_ROOT = BASE_DIR / 'static/'
 
 # Default primary key field type
