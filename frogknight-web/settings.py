@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'frogknight-web.wsgi.application'
 
 DEFAULT_POSTGRES_URL = environ['DEFAULT_POSTGRES_URL']
 DATABASES = {}
-DATABASES['default'] = dj_database_url.parse(DEFAULT_POSTGRES_URL, conn_max_age=100)
+DATABASES['default'] = dj_database_url.config(default=DEFAULT_POSTGRES_URL, conn_max_age=100)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
