@@ -136,3 +136,4 @@ db.sqlite3
 media
 /dev
 dev/Scripts/activate.bat
+staticfiles

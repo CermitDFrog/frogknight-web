@@ -14,3 +14,6 @@ def register(request):
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="registration/register.html", context={"register_form":form})
+
+def view_404(request, *ags, **kwargs):
+    return render(request, 'core/404.html', status=404)
