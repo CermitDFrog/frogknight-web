@@ -10,7 +10,7 @@ var dicemap = {
   [force]: "f"
 }
 
-function renderDicePool(parent = "dice-roller-header") {
+async function renderDicePool(parent = "dice-roller-header") {
   // Clear current pool
   var parent = document.getElementById(parent);
   while (parent.firstChild) { parent.removeChild(parent.firstChild); }
@@ -28,23 +28,23 @@ function renderDicePool(parent = "dice-roller-header") {
   }
 }
 
-function addToPool(die) {
+async function addToPool(die) {
   dicepool.push(dicebag[die]);
-  renderDicePool('dice-pool', 'remove', dicepool)
+  await renderDicePool('dice-pool', 'remove', dicepool)
 }
 
-function removeFromPool(die) {
+async function removeFromPool(die) {
   dicepool.splice(die, 1);
-  renderDicePool('dice-pool', 'remove', dicepool)
+  await renderDicePool('dice-pool', 'remove', dicepool)
 }
 
-function rollPool() {
-  renderDicePool('dice-pool', 'remove', dicepool);
+async function rollPool() {
+  await renderDicePool('dice-pool', 'remove', dicepool);
   var rollstring = '';
   for (var i = 0; i < dicepool.length; i++) {
     rollstring = rollstring.concat(dicemap[dicepool[i]]);
   }
-  var results = httpGet('/swcs/rest/roll?dicepool=' + rollstring);
+  var results = await httpGet('/swcs/rest/roll?dicepool=' + rollstring);
   var restext = ''
   var pool = document.getElementById("dice-pool");
   for (let key in results) {
@@ -53,9 +53,9 @@ function rollPool() {
       for (var i = 0; i < children.length; i++) {
         var dicetext = document.createElement('p');
         dicetext.classList.add('response-text');
-        if (['s','d'].indexOf(dicemap[dicepool[i]]) +1) {dicetext.classList.add('setback-die');}
+        if (['s', 'd'].indexOf(dicemap[dicepool[i]]) + 1) { dicetext.classList.add('setback-die'); }
         // if (['s','b'].indexOf(dicemap[dicepool[i]]) +1 && results[key][i].length != 1) {dicetext.classList.add('square-die');}
-        if (results[key][i].length === 1) {dicetext.classList.add('single-die');}
+        if (results[key][i].length === 1) { dicetext.classList.add('single-die'); }
         var dicetextval = document.createTextNode(results[key][i]);
         dicetext.appendChild(dicetextval);
         children[i].appendChild(dicetext);
@@ -68,19 +68,16 @@ function rollPool() {
   var parent = document.getElementById("dice-roller-results");
   while (parent.firstChild) { parent.removeChild(parent.firstChild); }
   var resultselement = document.createTextNode(restext);
-  // resultselement.className = 'respons-text';
   parent.appendChild(resultselement);
 }
 
-function httpGet(theUrl) {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", theUrl, false); // false for synchronous request
-  xmlHttp.send(null);
-
-  return JSON.parse(xmlHttp.responseText);
+async function httpGet(url) {
+  let response = await fetch(url);
+  let data = await response.json();
+  return data;
 }
 
-function clearDicePool() {
+async function clearDicePool() {
   dicepool = [];
   var parent = document.getElementById('dice-pool');
   while (parent.firstChild) { parent.removeChild(parent.firstChild); }
