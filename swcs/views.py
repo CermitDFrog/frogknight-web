@@ -31,13 +31,10 @@ def create_character(request):
     
     if request.method == "POST":
         form = forms.create_character(request.POST, request.FILES)
-        print("form made")
         if form.is_valid():
-            print("form valid")
             character = form.save(commit=False)
-            print("character made")
             character.player = request.user
-            print("user Gotten")
+            print(character.__dict__)
             character.save()
             print('Saved.')
             messages.success(request, "Character crerated.")
