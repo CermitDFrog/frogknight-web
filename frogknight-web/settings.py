@@ -50,7 +50,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'swcs',
     'core',
+    'cloudinary_storage',
+    'cloudinary'
 ]
+
+if DEBUG:
+    INSTALLED_APPS.pop()
+    INSTALLED_APPS.pop()
 
 AUTH_USER_MODEL = "core.CoreUser"
 
@@ -91,7 +97,8 @@ WSGI_APPLICATION = 'frogknight-web.wsgi.application'
 
 DEFAULT_POSTGRES_URL = environ['DEFAULT_POSTGRES_URL']
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config(default=DEFAULT_POSTGRES_URL, conn_max_age=100)
+DATABASES['default'] = dj_database_url.config(
+    default=DEFAULT_POSTGRES_URL, conn_max_age=100)
 
 
 # Password validation
@@ -112,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -124,7 +130,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -132,6 +137,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ('frogknight-web/static/',)
 STATIC_ROOT = BASE_DIR / 'static/'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+if DEBUG is False:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

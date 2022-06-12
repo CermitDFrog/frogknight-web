@@ -5,13 +5,14 @@ nav{
 button {
     background-color: rgb(62,115,174);
 }
+
 a:link {
     color: rgb(62,115,174);
     background-color: transparent;
     text-decoration: none;
   }
   
-  a:visited {
+a:visited {
     color: rgb(62,115,174);
     background-color: transparent;
     text-decoration: none;
@@ -24,6 +25,11 @@ body {
 .account-form-theme {
   background-color: rgb(214,223,231);
 }
+
+.card {
+  background-color: rgb(214,223,231);
+}
+
 /* div{
     background-color: rgb(155,160,168);
 } */

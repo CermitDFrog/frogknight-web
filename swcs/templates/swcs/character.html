@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'swcs/style.css' %}">
+<link rel="stylesheet" href="{% static 'core/theme.css' %}">
+<h1>{{ character.character_name }}</h1>
+{% if character.character_image %}
+<img class="character-image" src="{{ character.character_image.url }}">
+{% else %}
+<img class="character-image" src="{% static 'swcs/NoCharImage.png' %}">
+{% endif %}  
+<p>{{ character.character_description }}</p>
+{% endblock %}

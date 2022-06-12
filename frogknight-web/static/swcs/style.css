@@ -23,7 +23,6 @@
     color: white;
     text-align: center;
     text-decoration: none;
-    /* font-size: 16px; */
     margin: 2.5%;
     cursor: pointer;
 }
@@ -40,11 +39,8 @@
 }
 
 .response-text{
-    /* color:black; */
-    /* white-space: pre; */
     text-align: center;
     line-height: 35px;
-    /* z-index: 12;     */
     transform: translateZ(1000px);
     font-size: 100%;
     font-family: 'EotE Symbol';
@@ -52,7 +48,6 @@
 }
 
 .small-dice {
-    /* z-index: -1; */
     height: 60px;
     width: 60px;
     position: absolute;
@@ -83,7 +78,46 @@
     line-height: 22px;
 }
 
-/* .square-die {
-    font-size: 81%;
-    line-height: 41px;
-} */
+/* Character styles */
+#character-list {
+    width: auto;
+    padding-top: 10px;
+    margin-top: 5%;
+}
+
+.characters-grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 152px);
+    height: 180px;
+    transform-style: preserve-3d;
+}
+
+.character-card {
+    height: 180px; 
+    width: 100%;
+    border-radius: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.2s;
+}
+
+.character-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.character-card-image {
+    height: 80%;
+}
+.character-card-text {
+    margin: 0;
+    padding: 0;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: 90%;
+    text-align: center;
+}
+
+.character-image {
+    width: 100%;
+    max-width: 200px;
+}
