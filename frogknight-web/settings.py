@@ -140,8 +140,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = ('frogknight-web/static/',)
 STATIC_ROOT = BASE_DIR / 'static/'
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-if DEBUG is False:
+if DEBUG:
+    MEDIA_ROOT = BASE_DIR / "media"
+else:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
