@@ -1,4 +1,3 @@
-from tkinter.tix import Form
 from django.forms import ModelChoiceField, ModelForm
 from django.forms import Textarea
 from swcs import models
