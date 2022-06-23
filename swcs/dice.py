@@ -147,6 +147,7 @@ def roller(pool, character_name):
             newroll[REMAP[key]] = abs(roll[key])
             continue
         newroll[key] = roll[key]
+    # This is explicitly here for dev environments.
     if platform.system() == 'Windows':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(sendToDiscord(newroll, character_name))
@@ -158,7 +159,7 @@ async def sendToDiscord(roll, character_name):
     async with aiohttp.ClientSession() as session:
         webhook = Webhook.from_url(settings.DISCORD_WEB_HOOK_URL, adapter=AsyncWebhookAdapter(
             session))  # Initializing webhook with AsyncWebhookAdapter
-        rolltext = ''.join([EMOJI[face] for face in roll["face"]]) + '\n'
+        rolltext = ''.join([EMOJI[face] for face in roll["face"][::-1]]) + '\n'
         rolltext += ', '.join([f'{roll[key]} {key}' for key in roll if key !='face'])
         rolltext += f'\n Rolled by {character_name}'
         await webhook.send(content=rolltext)
