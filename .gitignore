@@ -137,3 +137,6 @@ media
 /dev
 dev/Scripts/activate.bat
 staticfiles
+
+# oddsnends
+testing.py

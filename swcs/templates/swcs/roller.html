@@ -14,6 +14,14 @@
   var api_root = '{{ settings.WEB_ROOT }}/swcs/rest/'
 </script>
 <script src="{% static 'swcs/roller.js' %}"></script>
+{% if user.is_authenticated %}
+<select id="character-dropdown" name="character" onchange="setCharacter()">
+<option value="unknown">---------</option>
+{% for character in characters %}
+<option value="{{ character.character_name }}">{{ character.character_name }}</option>
+{% endfor %}
+</select>
+{% endif %}
 <div id="dice-roller">
   <span id="dice-roller-header" class="dice-grid">
     <span id="dice-roller-buttons">

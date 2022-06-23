@@ -1,6 +1,6 @@
-var dicepool = []
-var dicebag = [boost, ability, proficiency, setback, difficulty, challenge, force];
-var dicemap = {
+let dicepool = []
+const dicebag = [boost, ability, proficiency, setback, difficulty, challenge, force];
+const dicemap = {
   [boost]: "b",
   [ability]: "a",
   [proficiency]: "p",
@@ -8,6 +8,11 @@ var dicemap = {
   [difficulty]: "d",
   [challenge]: "c",
   [force]: "f"
+}
+let character = 'unknown'
+
+async function setCharacter() {
+  character = document.getElementById('character-dropdown').value;
 }
 
 async function renderDicePool(parent = "dice-roller-header") {
@@ -44,7 +49,7 @@ async function rollPool() {
   for (var i = 0; i < dicepool.length; i++) {
     rollstring = rollstring.concat(dicemap[dicepool[i]]);
   }
-  var results = await httpGet('/swcs/rest/roll?dicepool=' + rollstring);
+  var results = await httpGet('/swcs/rest/roll?dicepool=' + rollstring +'&character='+character);
   var restext = ''
   var pool = document.getElementById("dice-pool");
   for (let key in results) {
@@ -63,7 +68,7 @@ async function rollPool() {
       continue;
     }
     let value = results[key];
-    restext = restext + key + ': ' + value + ' ';
+    restext = restext + results[key] + ' ' + key + '    ';
   }
   var parent = document.getElementById("dice-roller-results");
   while (parent.firstChild) { parent.removeChild(parent.firstChild); }

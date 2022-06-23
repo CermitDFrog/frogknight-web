@@ -16,15 +16,20 @@ def index(request):
 
 
 def diceroller(request):
-    return render(request, 'swcs/roller.html', context={})
+    if request.user.is_authenticated:
+        context = {"characters": models.character.objects.user_characters(request.user)}
+        return render(request, 'swcs/roller.html', context=context)
+    else:
+        return render(request, 'swcs/roller.html', context={})
 
 
 def roll(HttpRequest):
     try:
         dicepool = HttpRequest.GET["dicepool"]
-        return JsonResponse(dice.roller(dicepool))
-    except :
-        return JsonResponse({})
+        character_name = HttpRequest.GET["character"]
+        return JsonResponse(dice.roller(dicepool, character_name))
+    except Exception as e:
+        return HttpResponse(e)
 
 @login_required
 def create_character(request):

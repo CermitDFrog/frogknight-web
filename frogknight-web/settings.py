@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'swcs',
     'core',
     'cloudinary_storage',
-    'cloudinary'
+    'cloudinary',
+    'rest_framework'
 ]
 
 if DEBUG:
