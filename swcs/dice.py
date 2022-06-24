@@ -1,5 +1,5 @@
 # Importing discord.Webhook and discord.AsyncWebhookAdapter
-from discord import Webhook, AsyncWebhookAdapter, utils
+from discord import Webhook, AsyncWebhookAdapter, Embed
 from django.conf import settings
 from collections import Counter
 import aiohttp
@@ -8,45 +8,45 @@ import random
 import platform
 
 EMOJI = {'sw_p': '<:sw_p:989653989115187200>',
-'sw_pa': '<:sw_pa:989653989899522098>',
-'sw_c': '<:sw_c:989653869229404160>',
-'sw_fzz': '<:sw_fzz:989653988376981557>',
-'sw_s': '<:sw_s:989630050456444929>',
-'sw_fZZ': '<:sw_fZZ:989653987445837854>',
-'sw_bs': '<:sw_bs:989630062909354065>',
-'sw_dtt': '<:sw_dtt:989653920496369736>',
-'sw_dt': '<:sw_dt:989653918751535147>',
-'sw_df': '<:sw_df:989653917086400532>',
-'sw_dff': '<:sw_dff:989653917879128064>',
-'sw_ps': '<:sw_ps:989653992495804487>',
-'sw_baa': '<:sw_baa:989630061802057818>',
-'sw_ctf': '<:sw_ctf:989653872182181918>',
-'sw_px': '<:sw_px:989653994148352110>',
-'sw_bas': '<:sw_bas:989630062468948028>',
-'sw_as': '<:sw_as:989630058408849508>',
-'sw_cf': '<:sw_cf:989653869975973888>',
-'sw_aa': '<:sw_aa:989630055665782864>',
-'sw_aaa': '<:sw_aaa:989630056651440128>',
-'sw_fZ': '<:sw_fZ:989653985713594368>',
-'sw_stf': '<:sw_stf:989630053157597294>',
-'sw_a': '<:sw_a:989630054776594452>',
-'sw_st': '<:sw_st:989630052360679424>',
-'sw_ba': '<:sw_ba:989630061017706576>',
-'sw_stt': '<:sw_stt:989630054021627944>',
-'sw_sf': '<:sw_sf:989630051614089236>',
-'sw_ass': '<:sw_ass:989630059084124231>',
-'sw_ct': '<:sw_ct:989653871326527538>',
-'sw_pas': '<:sw_pas:989653991828885514>',
-'sw_cff': '<:sw_cff:989653870680604752>',
-'sw_d': '<:sw_d:989653915836506172>',
-'sw_pss': '<:sw_pss:989653993103958047>',
-'sw_dtf': '<:sw_dtf:989653919808507995>',
-'sw_cy': '<:sw_cy:989653873595666453>',
-'sw_paa': '<:sw_paa:989653990683865158>',
-'sw_b': '<:sw_b:989630060296298506>',
-'sw_aas': '<:sw_aas:989630057418997840>',
-'sw_ctt': '<:sw_ctt:989653872937140234>',
-'sw_fz': '<:sw_fz:989653986468565052>'}
+         'sw_pa': '<:sw_pa:989653989899522098>',
+         'sw_c': '<:sw_c:989653869229404160>',
+         'sw_fzz': '<:sw_fzz:989653988376981557>',
+         'sw_s': '<:sw_s:989630050456444929>',
+         'sw_fZZ': '<:sw_fZZ:989653987445837854>',
+         'sw_bs': '<:sw_bs:989630062909354065>',
+         'sw_dtt': '<:sw_dtt:989653920496369736>',
+         'sw_dt': '<:sw_dt:989653918751535147>',
+         'sw_df': '<:sw_df:989653917086400532>',
+         'sw_dff': '<:sw_dff:989653917879128064>',
+         'sw_ps': '<:sw_ps:989653992495804487>',
+         'sw_baa': '<:sw_baa:989630061802057818>',
+         'sw_ctf': '<:sw_ctf:989653872182181918>',
+         'sw_px': '<:sw_px:989653994148352110>',
+         'sw_bas': '<:sw_bas:989630062468948028>',
+         'sw_as': '<:sw_as:989630058408849508>',
+         'sw_cf': '<:sw_cf:989653869975973888>',
+         'sw_aa': '<:sw_aa:989630055665782864>',
+         'sw_aaa': '<:sw_aaa:989630056651440128>',
+         'sw_fZ': '<:sw_fZ:989653985713594368>',
+         'sw_stf': '<:sw_stf:989630053157597294>',
+         'sw_a': '<:sw_a:989630054776594452>',
+         'sw_st': '<:sw_st:989630052360679424>',
+         'sw_ba': '<:sw_ba:989630061017706576>',
+         'sw_stt': '<:sw_stt:989630054021627944>',
+         'sw_sf': '<:sw_sf:989630051614089236>',
+         'sw_ass': '<:sw_ass:989630059084124231>',
+         'sw_ct': '<:sw_ct:989653871326527538>',
+         'sw_pas': '<:sw_pas:989653991828885514>',
+         'sw_cff': '<:sw_cff:989653870680604752>',
+         'sw_d': '<:sw_d:989653915836506172>',
+         'sw_pss': '<:sw_pss:989653993103958047>',
+         'sw_dtf': '<:sw_dtf:989653919808507995>',
+         'sw_cy': '<:sw_cy:989653873595666453>',
+         'sw_paa': '<:sw_paa:989653990683865158>',
+         'sw_b': '<:sw_b:989630060296298506>',
+         'sw_aas': '<:sw_aas:989630057418997840>',
+         'sw_ctt': '<:sw_ctt:989653872937140234>',
+         'sw_fz': '<:sw_fz:989653986468565052>'}
 
 DICE = {
     "b": (
@@ -159,10 +159,11 @@ async def sendToDiscord(roll, character_name):
     async with aiohttp.ClientSession() as session:
         webhook = Webhook.from_url(settings.DISCORD_WEB_HOOK_URL, adapter=AsyncWebhookAdapter(
             session))  # Initializing webhook with AsyncWebhookAdapter
-        rolltext = ''.join([EMOJI[face] for face in roll["face"][::-1]]) + '\n'
-        rolltext += ', '.join([f'{roll[key]} {key}' for key in roll if key !='face'])
-        rolltext += f'\n Rolled by {character_name}'
-        await webhook.send(content=rolltext)
+        rollfaces = ''.join([EMOJI[face] for face in roll["face"][::-1]])
+        rolltext = ', '.join([f'{roll[key]} {key}' for key in roll if key != 'face'])
+        roll_embed = Embed(title="Results", description=rolltext)
+        await webhook.send(embed=roll_embed, content=rollfaces, username=character_name)
+
 
 def uniquelist():
     faces = set()
