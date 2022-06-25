@@ -1,6 +1,10 @@
 from swcs import views
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
+router = DefaultRouter(trailing_slash=False)
+router.register("species",views.SpeciesViewSet,"species")
+# router.register("species",views.SpeciesViewSet,"species")
 
 app_name = 'swcs'
 urlpatterns = [
@@ -10,4 +14,5 @@ urlpatterns = [
     path('characters/',views.CharacterListView.as_view(), name="sw-characters"),
     path('characters/create', views.create_character, name="sw-create_character"),
     path('characters/<int:pk>',views.CharacterDetailView.as_view(), name="sw-character"),
+    path('rest/', include(router.urls)),
  ]

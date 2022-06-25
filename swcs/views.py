@@ -1,4 +1,5 @@
-from swcs import dice, models, forms
+from django import views
+from swcs import dice, models, forms, serializers
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse, HttpRequest
@@ -7,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib import messages
+from rest_framework import viewsets
 # from django.template import loader
 # import dice
 
@@ -29,7 +31,9 @@ def roll(HttpRequest):
         character_name = HttpRequest.GET["character"]
         return JsonResponse(dice.roller(dicepool, character_name))
     except Exception as e:
-        return HttpResponse(e)
+        print(e)
+        return {}
+
 
 @login_required
 def create_character(request):
@@ -62,3 +66,9 @@ class CharacterDetailView(LoginRequiredMixin, DetailView):
     model = models.character
     template_name = 'swcs/character.html'
     context_object_name = 'character'
+
+
+class SpeciesViewSet(viewsets.ReadOnlyModelViewSet):
+    lookup_field = 'species_name'
+    queryset = models.species.objects.all()
+    serializer_class = serializers.species_serializer

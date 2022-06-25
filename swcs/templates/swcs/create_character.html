@@ -1,6 +1,10 @@
 {% extends 'core/base.html' %}
 {% block content %}
 {% load static %}
+<link rel="stylesheet" href="{% static 'swcs/style.css' %}">
+<link rel="stylesheet" href="{% static 'core/theme.css' %}">
+<script src="{% static 'swcs/create_character.js' %}"></script>
+<div id="create-character">
 <form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
 <table>
@@ -14,7 +18,9 @@
         {% endfor %}
     </tbody>
 </table>
-    <!-- {{ create_character.as_ul }} -->
-    <button type="Submit">Create</button>
+<div id="selection-details">
+</div>
+<button type="Submit">Create</button>
 </form>
+</div>
 {% endblock %}

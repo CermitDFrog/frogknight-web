@@ -155,7 +155,7 @@ def roller(pool, character_name):
     return newroll
 
 
-async def sendToDiscord(roll, character_name):
+async def sendToDiscord(roll, character_name, roll_description=None):
     async with aiohttp.ClientSession() as session:
         webhook = Webhook.from_url(settings.DISCORD_WEB_HOOK_URL, adapter=AsyncWebhookAdapter(
             session))  # Initializing webhook with AsyncWebhookAdapter

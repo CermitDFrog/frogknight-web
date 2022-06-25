@@ -1,3 +1,9 @@
+async function httpGet(url) {
+  let response = await fetch(url);
+  let data = await response.json();
+  return data;
+}
+
 let dicepool = []
 const dicebag = [boost, ability, proficiency, setback, difficulty, challenge, force];
 const dicemap = {
@@ -74,12 +80,6 @@ async function rollPool() {
   while (parent.firstChild) { parent.removeChild(parent.firstChild); }
   var resultselement = document.createTextNode(restext);
   parent.appendChild(resultselement);
-}
-
-async function httpGet(url) {
-  let response = await fetch(url);
-  let data = await response.json();
-  return data;
 }
 
 async function clearDicePool() {

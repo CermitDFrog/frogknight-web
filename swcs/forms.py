@@ -1,10 +1,12 @@
-from django.forms import ModelChoiceField, ModelForm
-from django.forms import Textarea
+from django.forms import ModelChoiceField, ModelForm, Textarea, Select
 from swcs import models
 
 class create_character(ModelForm):
-	character_species = ModelChoiceField(queryset=models.species.objects.all(),
-										 to_field_name="species_name")
+	character_species = ModelChoiceField(
+		queryset=models.species.objects.all(),
+		to_field_name="species_name",
+		widget=Select(attrs={"onChange":'updateSpecies()'}))
+
 	class Meta:
 		model = models.character
 		fields = ("character_name", "character_description", 

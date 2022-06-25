@@ -79,7 +79,7 @@
     line-height: 22px;
 }
 
-/* Character styles */
+/* character */
 #character-list {
     width: auto;
     padding-top: 10px;
@@ -90,7 +90,7 @@
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, 152px);
-    height: 180px;
+    /* height: 180px; */
     transform-style: preserve-3d;
 }
 
@@ -128,3 +128,48 @@
     padding-bottom: 2%;
     border-radius: 15%;
 }
+
+/* create_character should be centered*/
+#create-character {
+    width: 600px;
+    margin: 0 auto;
+}
+
+/* This is a div */
+#selection-details {
+    padding-top: 10px;
+    white-space: pre-wrap;
+}
+
+.species-attribute-grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.species-attribute-card{
+    margin: 5px;
+    width: 80px;
+    /* width: 100%; */
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.selection-details-description{
+    font-size: 90%;
+    margin: 5%;
+    padding: 2%;
+}
+/* .grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.item {
+  flex: 1 0 100px;
+  background: #eee;
+  text-align: center;
+  border: 1px dashed gray;
+  box-sizing: border-box;
+} */

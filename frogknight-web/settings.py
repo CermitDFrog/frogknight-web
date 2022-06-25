@@ -50,11 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'swcs',
     'core',
     'cloudinary_storage',
     'cloudinary',
-    'rest_framework'
 ]
 
 if DEBUG:
