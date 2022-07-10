@@ -1,19 +1,19 @@
-{% extends 'core/base.html' %}
+{% extends "core/base.html" %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'swcs/style.css' %}">
-<link rel="stylesheet" href="{% static 'core/theme.css' %}">
+<link rel="stylesheet" href="{% static 'swcs/style.css' %}" />
+<link rel="stylesheet" href="{% static 'core/theme.css' %}" />
 <div class="characters-grid">
     <span class="character-card card" onclick="window.open('{% url 'swcs:sw-create_character' %}','_self')">
-        <img class="character-card-image" src="{% static 'swcs/NoCharImage.png' %}">
+        <img class="character-card-image" alt="No Character Image" src="{% static 'swcs/NoCharImage.png' %}" />
         <div class="character-card-text">Create New Character</div>
     </span>
     {% for character in characters %}
     <span class="character-card card" onclick="window.open('{% url 'swcs:sw-character' character.id %}','_self')">
         {% if character.character_image %}
-        <img class="character-card-image" src="{{ character.character_image.url }}">
+        <img class="character-card-image" alt="Character Image" src="{{ character.character_image.url }}" />
         {% else %}
-        <img class="character-card-image" src="{% static 'swcs/NoCharImage.png' %}">
+        <img class="character-card-image" alt="Character Image" src="{% static 'swcs/NoCharImage.png' %}" />
         {% endif %}   
         <div class="character-card-text">{{ character.character_name|truncatechars:32 }}</div>
     </span>

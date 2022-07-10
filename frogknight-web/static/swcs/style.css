@@ -1,8 +1,7 @@
-
 @font-face {
     font-family: 'EotE Symbol';
     src: local("EotE Symbol"), url("EotE Symbol.otf") format("opentype");
-  }
+}
 
 /* Roller Styles start here */
 .dice {
@@ -38,7 +37,7 @@
     text-align: center;
 }
 
-.response-text{
+.response-text {
     text-align: center;
     line-height: 35px;
     transform: translateZ(1000px);
@@ -57,7 +56,7 @@
     filter: drop-shadow(2px 2px 2px black);
 }
 
-.dice-grid{
+.dice-grid {
     display: grid;
     grid-gap: 5px;
     grid-template-columns: repeat(auto-fill, 60px);
@@ -65,13 +64,14 @@
     /* border-radius: 10%;
     border-style: solid; */
 }
+
 #dice-roller {
     padding-top: 10px;
     width: 520px;
 }
 
 .setback-die {
-    color:white;
+    color: white;
 }
 
 .single-die {
@@ -95,20 +95,21 @@
 }
 
 .character-card {
-    height: 180px; 
+    height: 180px;
     width: 100%;
     border-radius: 5%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.2s;
 }
 
 .character-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .character-card-image {
     height: 80%;
 }
+
 .character-card-text {
     margin: 0;
     padding: 0;
@@ -130,8 +131,8 @@
 }
 
 /* create_character should be centered*/
-#create-character {
-    width: 600px;
+.character {
+    width: 700px;
     margin: 0 auto;
 }
 
@@ -141,35 +142,31 @@
     white-space: pre-wrap;
 }
 
-.species-attribute-grid{
+.character-nactbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.species-attribute-card{
+.nactbar-button{
+    margin: 5px;
+}
+.species-attribute-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.species-attribute-card {
     margin: 5px;
     width: 80px;
     /* width: 100%; */
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.selection-details-description{
+.selection-details-description {
     font-size: 90%;
     margin: 5%;
     padding: 2%;
 }
-/* .grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1em;
-}
-
-.item {
-  flex: 1 0 100px;
-  background: #eee;
-  text-align: center;
-  border: 1px dashed gray;
-  box-sizing: border-box;
-} */

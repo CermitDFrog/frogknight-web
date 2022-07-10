@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'swcs/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/theme.css' %}" />
+    <script src="{% static 'swcs/create_character.js' %}"></script>
+    <div class="character">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <td>Character Creation</td>
+                </thead>
+                <tbody>
+                    {% for field in form %}
+                        <tr>
+                            <td>{{ field.label_tag }}</td>
+                            <td>{{ field }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="selection-details"></div>
+            <button type="Submit">Update</button>
+        </form>
+    </div>
+{% endblock content %}

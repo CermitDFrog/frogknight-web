@@ -1,17 +1,18 @@
-{% extends 'core/base.html' %}
-{% block title %}Login{% endblock %}
+{% extends "core/base.html" %}
+{% block title %}Login{% endblock title %}
 {% block content %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'core/base.css' %}">
-<link rel="stylesheet" href="{% static 'core/theme.css' %}">
-<div class="account-form account-form-theme">
-    <h2>Log In</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_ul }}
-        <button type="submit">Log In</button>
-    </form>
-
-    <p>Don't have an account? <a href="{% url 'core:register' %}">Create an account</a>.</p>
-</div>
-{% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'core/theme.css' %}"/>
+    <div class="account-form account-form-theme">
+        <h2>Log In</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_ul }}
+            <button type="submit">Log In</button>
+        </form>
+        <p>
+            Don't have an account? <a href="{% url 'core:register' %}">Create an account</a>.
+        </p>
+    </div>
+{% endblock content %}

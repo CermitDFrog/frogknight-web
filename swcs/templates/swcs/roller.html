@@ -1,8 +1,8 @@
-{% extends 'core/base.html' %}
+{% extends "core/base.html" %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'swcs/style.css' %}">
-<link rel="stylesheet" href="{% static 'core/theme.css' %}">
+<link rel="stylesheet" href="{% static 'swcs/style.css' %}" />
+<link rel="stylesheet" href="{% static 'core/theme.css' %}" />
 <script type="text/javascript" charset="utf-8">
   var boost = "{% static 'swcs/boost.svg' %}";
   var ability = "{% static 'swcs/ability.svg' %}";
@@ -25,20 +25,20 @@
 <div id="dice-roller">
   <span id="dice-roller-header" class="dice-grid">
     <span id="dice-roller-buttons">
-      <button onclick="rollPool()" class="roller-button">Roll</button><br>
+      <button onclick="rollPool()" class="roller-button">Roll</button><br/>
       <button onclick="clearDicePool()" class="roller-button">Clear</button>
     </span>
-    <span><img class="dice" src="{% static 'swcs/boost.svg' %}" onclick="addToPool(0)"></span>
-    <span><img class="dice" src="{% static 'swcs/ability.svg' %}" onclick="addToPool(1)"></span>
-    <span><img class="dice" src="{% static 'swcs/proficiency.svg' %}" onclick="addToPool(2)"></span>
-    <span><img class="dice" src="{% static 'swcs/setback.svg' %}" onclick="addToPool(3)"></span>
-    <span><img class="dice" src="{% static 'swcs/difficulty.svg' %}" onclick="addToPool(4)"></span>
-    <span><img class="dice" src="{% static 'swcs/challenge.svg' %}" onclick="addToPool(5)"></span>
-    <span><img class="dice" src="{% static 'swcs/force.svg' %}" onclick="addToPool(6)"></span>
+    <span><img class="dice" alt="FFG Boost Die" src="{% static 'swcs/boost.svg' %}" onclick="addToPool(0)"/></span>
+    <span><img class="dice" alt="FFG Ability Die" src="{% static 'swcs/ability.svg' %}" onclick="addToPool(1)"/></span>
+    <span><img class="dice" alt="FFG Proficiency Die" src="{% static 'swcs/proficiency.svg' %}" onclick="addToPool(2)"/></span>
+    <span><img class="dice" alt="FFG Setback Die" src="{% static 'swcs/setback.svg' %}" onclick="addToPool(3)"/></span>
+    <span><img class="dice" alt="FFG Difficulty Die" src="{% static 'swcs/difficulty.svg' %}" onclick="addToPool(4)"/></span>
+    <span><img class="dice" alt="FFG Challenge Die" src="{% static 'swcs/challenge.svg' %}" onclick="addToPool(5)"/></span>
+    <span><img class="dice" alt="FFG Force Die" src="{% static 'swcs/force.svg' %}" onclick="addToPool(6)"/></span>
   </span>
   <span id="dice-pool" class="dice-grid">
   </span>
   <span id="dice-roller-results">
   </span>
 </div>
-{% endblock %}
+{% endblock content %}

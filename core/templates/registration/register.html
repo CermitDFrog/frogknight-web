@@ -2,19 +2,19 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'core/base.css' %}">
-<link rel="stylesheet" href="{% static 'core/theme.css' %}">
+<link rel="stylesheet" href="{% static 'core/base.css' %}"/>
+<link rel="stylesheet" href="{% static 'core/theme.css' %}"/>
 <div class="account-form  account-form-theme">
-	<h2>Register</h2>
-	<form method="POST">
-		{% csrf_token %}
-		{{ register_form.as_ul }}
-		<li class="manual-helptext">Your password can’t be too similar to your other personal information.</li>
-		<li class="manual-helptext">Your password must contain at least 8 characters.</li>
-		<li class="manual-helptext">Your password can’t be a commonly used password.</li>
-		<li class="manual-helptext">Your password can’t be entirely numeric.</li>
-		<button type="Submit">Register</button>
-	</form>
-	<p>If you already have an account, <a href="{% url 'core:login' %}">login</a> instead.</p>
+    <h2>Register</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ register_form.as_ul }}
+        <li class="manual-helptext">Your password can’t be too similar to your other personal information.</li>
+        <li class="manual-helptext">Your password must contain at least 8 characters.</li>
+        <li class="manual-helptext">Your password can’t be a commonly used password.</li>
+        <li class="manual-helptext">Your password can’t be entirely numeric.</li>
+        <button type="Submit">Register</button>
+    </form>
+    <p>If you already have an account, <a href="{% url 'core:login' %}">login</a> instead.</p>
 </div>
 {% endblock %}
